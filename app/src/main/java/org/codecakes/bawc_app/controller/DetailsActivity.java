@@ -1,5 +1,7 @@
 package org.codecakes.bawc_app.controller;
 
+import android.content.Context;
+import android.hardware.input.InputManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -7,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,11 +19,16 @@ import org.codecakes.bawc_app.R;
 import org.codecakes.bawc_app.data.CourseData;
 import org.codecakes.bawc_app.model.Course;
 
-public class DetailsActivity extends AppCompatActivity {
+public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
     private int courseId;
     private Course course;
     private ImageView courseImageView;
     private TextView courseTitle;
+    private InputMethodManager inputMethodManager;
+    private LinearLayout revealView;
+    private boolean isEditTextVisible = false;
+
+    private FloatingActionButton button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +38,14 @@ public class DetailsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         setUpUI();
+        loadCourse();
 
 
 
-        Bundle bundle = getIntent().getExtras();
+    }
 
-        courseId = bundle.getInt("course_id");
-
-        course = new CourseData().courseList().get(courseId);
+    private void loadCourse() {
+        course = new CourseData().courseList().get(getIntent().getExtras().getInt("course_id"));
 
         Log.d("COURSE", Integer.toString(course.getImageResourceId(this)));
         // The reason this didn't work before is the transparency of the background
@@ -45,12 +54,25 @@ public class DetailsActivity extends AppCompatActivity {
         courseImageView.setImageResource(course.getImageResourceId(this));
 
         courseTitle.setText(course.getCourseName());
-
     }
 
     private void setUpUI() {
+        inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
         courseImageView = findViewById(R.id.detailsCourseImage);
         courseTitle = findViewById(R.id.detailsCourseTitle);
+
+        revealView = findViewById(R.id.revealView);
+        revealView.setVisibility(View.INVISIBLE);
+        isEditTextVisible = false;
+
+        button = (FloatingActionButton) findViewById(R.id.detailsAddButton);
+
+
     }
 
+    @Override
+    public void onClick(View v) {
+        
+    }
 }

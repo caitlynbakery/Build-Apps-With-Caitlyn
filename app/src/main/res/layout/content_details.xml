@@ -61,6 +61,7 @@
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/detailsAddButton"
             android:layout_width="65dp"
             android:layout_height="65dp"
             app:fabCustomSize="65dp"
