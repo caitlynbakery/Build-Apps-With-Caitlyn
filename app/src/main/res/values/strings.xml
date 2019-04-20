@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">BAWC_APP</string>
+    <string name="action_settings">Settings</string>
+    <string name="show_as_grid">Show as grid</string>
+    <string name="show_as_list">Show as list</string>
+    <string name="login_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="loginButton_name">Login</string>
+    <string name="create_act_text">Create Account</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="create_act_button_title">Create Account</string>
+    <string name="title_activity_details">DetailsActivity</string>
+</resources>

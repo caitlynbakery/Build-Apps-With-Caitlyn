@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.codecakes.bawc_app.MainActivity">
+    <item
+        android:id="@+id/action_toggle"
+        android:icon="@drawable/ic_grid_on_white_24dp"
+        android:orderInCategory="100"
+        android:title="@string/show_as_grid"
+        app:showAsAction="always" />
+</menu>
