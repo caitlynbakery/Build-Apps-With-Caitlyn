@@ -1,5 +1,7 @@
 package org.codecakes.bawc_app.controller;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.hardware.input.InputManager;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -67,12 +70,52 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         isEditTextVisible = false;
 
         button = (FloatingActionButton) findViewById(R.id.detailsAddButton);
+        button.setOnClickListener(this);
 
 
     }
 
     @Override
     public void onClick(View v) {
-        
+        switch (v.getId()) {
+            case R.id.detailsAddButton:
+                if(!isEditTextVisible){
+                    revealEditText(revealView);
+                }else {
+                    hideEditText(revealView);
+                }
+                break;
+
+        }
+    }
+
+    private void hideEditText(final LinearLayout revealView) {
+        int cx = revealView.getRight() - 30;
+        int cy = revealView.getBottom() - 60;
+
+        int initialRadius = revealView.getWidth();
+        Animator anim = ViewAnimationUtils.createCircularReveal(revealView,
+                cx, cy, initialRadius, 0f);
+        anim.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                revealView.setVisibility(View.INVISIBLE);
+            }
+        });
+        isEditTextVisible = false;
+        anim.start();
+    }
+
+    private void revealEditText(LinearLayout revealView) {
+        int cx = revealView.getRight() - 30;
+        int cy = revealView.getBottom() - 60;
+
+        int finalRadius = Math.max(revealView.getWidth(), revealView.getHeight());
+        Animator anim = ViewAnimationUtils.createCircularReveal(revealView,
+                cx, cy, 0f, finalRadius);
+        revealView.setVisibility(View.VISIBLE);
+        isEditTextVisible = true;
+        anim.start();
     }
 }
