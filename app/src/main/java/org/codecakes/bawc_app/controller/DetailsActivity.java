@@ -3,6 +3,7 @@ package org.codecakes.bawc_app.controller;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.graphics.drawable.Animatable;
 import android.hardware.input.InputManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     private InputMethodManager inputMethodManager;
     private LinearLayout revealView;
     private boolean isEditTextVisible = false;
+    private EditText commentEditText;
 
     private FloatingActionButton button;
 
@@ -72,6 +75,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         button = (FloatingActionButton) findViewById(R.id.detailsAddButton);
         button.setOnClickListener(this);
 
+        commentEditText = findViewById(R.id.detailsComments);
+
 
     }
 
@@ -81,8 +86,20 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.detailsAddButton:
                 if(!isEditTextVisible){
                     revealEditText(revealView);
+                    commentEditText.requestFocus();
+                    inputMethodManager.showSoftInput(commentEditText,
+                            InputMethodManager.SHOW_IMPLICIT);
+
+                    button.setImageResource(R.drawable.icn_morph);
+                    Animatable animatable = (Animatable)button.getDrawable();
+                    animatable.start();
                 }else {
                     hideEditText(revealView);
+                    button.setImageResource(R.drawable.icn_morph_reverse);
+                    inputMethodManager.hideSoftInputFromWindow(commentEditText.getWindowToken(),
+                            0);
+                    Animatable animatable = (Animatable)button.getDrawable();
+                    animatable.start();
                 }
                 break;
 
