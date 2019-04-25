@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,12 +49,10 @@ implements View.OnClickListener{
         Picasso picasso = new Picasso.Builder(context).build();
         picasso.load(course.getImageResourceId(viewHolder.courseTitle.getContext()))
                 .into(viewHolder.courseImageView);
-        picasso.load(course.getImageResourceId(viewHolder.courseTitle.getContext()))
-                .into(viewHolder.authorImageView);
-//        Picasso.get().load(course.getImageResourceId(viewHolder.courseTitle.getContext()))
-//            .into(viewHolder.courseImageView);
-//        Picasso.get().load(course.getImageResourceId(viewHolder.courseTitle.getContext()))
-//             .into(viewHolder.authorImageView);
+//        picasso.load(course.getImageResourceId(viewHolder.courseTitle.getContext()))
+//                .into(viewHolder.authorImageView);
+        picasso.load(R.drawable.chef3).into(viewHolder.authorImageView);
+
 
         Bitmap photo = BitmapFactory.decodeResource(context.getResources(),
                 course.getImageResourceId(context));
