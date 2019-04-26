@@ -2,7 +2,7 @@
 
 android app to show Caitlyn's courses
 
-![](images/chef2.jpg)
+![](images/phones.png)
 
 ## USAGE
 
