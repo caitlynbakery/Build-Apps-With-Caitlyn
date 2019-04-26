@@ -8,8 +8,8 @@ I used these technologies:
 
 * Java
 * [Picasso](https://square.github.io/picasso/)
-* Palette
-* RecyclerView
+* [Palette](https://developer.android.com/training/material/palette-colors)
+* [RecyclerView](https://developer.android.com/reference/android/support/v7/widget/RecyclerView)
 
 ## USAGE
 
